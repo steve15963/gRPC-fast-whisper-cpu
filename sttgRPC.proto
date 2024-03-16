@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package orialz.sttgRPC;
+
+message Sound{
+  bytes bin    = 1;
+}
+
+message Text{
+  string text = 1;
+}
+
+message StreamText{
+  int32  start = 1;
+  int32  end   = 2;
+  string text   = 3;
+}
+
+service SpeechToText{
+  rpc toStreamText(stream Sound) returns (stream StreamText);
+  rpc toText(stream Sound) returns (Text);
+}
